@@ -2,9 +2,19 @@
 
 
 
+
+
+[TOC]
+
+
+
+
+
 ### #0 INTRODUCTION
 
 ---
+
+
 
 
 
@@ -22,6 +32,8 @@
 
 
 
+
+
 2. ##### react app 생성
 
 ```bash
@@ -30,11 +42,15 @@ npx create-react-app my_first_app_2021
 
  
 
+
+
 3. ##### react app 실행
 
 ```bash
 npm start
 ```
+
+
 
 
 
@@ -55,6 +71,8 @@ npm start
 
 
 
+
+
 ##### src/Potato.js
 
 ```js
@@ -69,6 +87,8 @@ export default Potato
 
 
 
+
+
 ##### src/index.js
 
 ```js
@@ -80,6 +100,8 @@ ReactDOM.render(
   document.getElementById('root') // 아래의 index.html~!
 )
 ```
+
+
 
 
 
@@ -98,6 +120,8 @@ ReactDOM.render(
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
 ```
+
+
 
 
 
@@ -173,6 +197,8 @@ function App() {
 // 내보내기~!
 export default App
 ```
+
+
 
 
 
@@ -260,6 +286,8 @@ export default App
 
 
 
+
+
 ### #4 MAKING THE MOVIE APP
 
 ---
@@ -272,12 +300,16 @@ npm i axios
 
 
 
+
+
 - ##### API => YTS
 
 ```
 https://yts-proxy.now.sh//list_movies.json // 노마드코더 제공 => 추후 url이 바뀔 것을 대비해서~!
 https://yts.mx/api/v2/list_movies.json // 사이트
 ```
+
+
 
 
 
@@ -340,6 +372,8 @@ export default App
 
 
 
+
+
 ##### src/Movie.js
 
 ```js
@@ -378,6 +412,8 @@ Movie.propTypes = {
 
 export default Movie
 ```
+
+
 
 
 
@@ -438,6 +474,8 @@ export default Movie
 
 
 
+
+
 ##### src/App.css
 
 ```css
@@ -484,6 +522,8 @@ body,
 
 
 
+
+
 ### #5 CONCLUSIONS
 
 ---
@@ -499,6 +539,8 @@ npm i gh-pages
 
 
 
+
+
 ##### package.json
 
 ```json
@@ -510,6 +552,8 @@ npm i gh-pages
 ```bash
 npm run build
 ```
+
+
 
 
 
@@ -528,6 +572,8 @@ npm run deploy
 
 
 
+
+
 ### #6 ROUTING BONUS
 
 ---
@@ -542,11 +588,15 @@ npm i react-router-dom
 
 
 
+
+
 - src에 components, routes 폴더 생성
 - Movie.css, Movie.js는 components로 이동하고, routes 폴더 내에 Home.js, Home.css 생성해서 App.js, App.css 복붙
 - 사진에 없는 새로운 파일들 생성
 
 <img src="README.assets/image-20210115201449825.png" alt="image-20210115201449825" style="zoom:80%;" />
+
+
 
 
 
@@ -589,6 +639,8 @@ export default App
 
 
 
+
+
 ##### src/App.css
 
 ```css
@@ -605,6 +657,8 @@ body {
   height: 100%;
 }
 ```
+
+
 
 
 
@@ -668,6 +722,8 @@ export default Home
 
 
 
+
+
 ##### src/routes/Home.css
 
 ```css
@@ -697,6 +753,8 @@ export default Home
 
 
 
+
+
 ##### src/routes/About.js
 
 ```js
@@ -719,6 +777,8 @@ function About(props) { // Route의 소통법
 
 export default About
 ```
+
+
 
 
 
@@ -749,6 +809,8 @@ export default About
 
 
 
+
+
 ##### src/components/Navigation.js
 
 ```js
@@ -768,6 +830,8 @@ function Navigation() {
 
 export default Navigation
 ```
+
+
 
 
 
@@ -800,6 +864,8 @@ export default Navigation
   margin-bottom: 20px;
 }
 ```
+
+
 
 
 
@@ -854,6 +920,8 @@ Movie.propTypes = {
 
 export default Movie
 ```
+
+
 
 
 
@@ -920,6 +988,8 @@ export default Movie
   margin-right: 30px;
 }
 ```
+
+
 
 
 
