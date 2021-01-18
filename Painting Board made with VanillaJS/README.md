@@ -2,6 +2,20 @@
 
 
 
+[TOC]
+
+
+
+### # Photo
+
+---
+
+<img src="README.assets/Paintjs - Chrome 2021-01-18 오후 8_37_14.png" alt="Paintjs - Chrome 2021-01-18 오후 8_37_14" style="zoom: 67%;" />
+
+<img src="README.assets/PaintJS-1610970210025.png" alt="PaintJS" style="zoom: 67%;" />
+
+
+
 ### #0 INTRODUCTION
 
 ---
@@ -270,54 +284,17 @@ table {
 
 ---
 
+> Canvas Events
 >
-
-
-
-#### 1. Canvas Events
-
-- event 세팅
-
-
-
-##### app.js
-
-```js
-const canvas = document.getElementById("jsCanvas");
-
-let painting = false;
-
-function stopPainting() {
-    painting = false;
-}
-
-function onMouseMove(event) {
-    const x = event.offsetX;
-    const y = event.offsetY;
-}
-
-function onMouseDown(event) {
-    painting = true;
-}
-
-function onMouseUp(event) {
-    stopPainting();
-}
-
-if (canvas) {
-    canvas.addEventListener("mousemove", onMouseMove);
-    canvas.addEventListener("mousedown", onMouseDown);
-    canvas.addEventListener("mouseup", onMouseUp);
-    canvas.addEventListener("mouseleave", stopPainting);
-}
-```
-
-
-
-#### 2. 2D Context
-
-- canvas는 context를 갖고 있는 html의 요소고, 그 요소들 안에서 픽셀들을 다룰 수 있다.
-- ctx로 선 그리기! => 뭔가가 좀 이상한걸, 그건 다음 시간에~!
+>2D Context
+>
+>Changing Color
+>
+>Brush Size
+>
+>Fill Mode
+>
+>Saving the Image
 
 
 
@@ -326,11 +303,25 @@ if (canvas) {
 ```js
 const canvas = document.getElementById("jsCanvas");
 const ctx = canvas.getContext("2d");
+const colors = document.getElementsByClassName("jsColor");
+const range = document.getElementById("jsRange");
+const mode = document.getElementById("jsMode");
+const saveBtn = document.getElementById("jsSave");
 
-ctx.strokeStyle = "#2c2c2c";
+const INITIAL_COLOR = "#2c2c2c";
+const CANVAS_SIZE = 500;
+
+canvas.width = CANVAS_SIZE;
+canvas.height = CANVAS_SIZE;
+
+ctx.fillStyle = "white";
+ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+ctx.strokeStyle = INITIAL_COLOR;
+ctx.fillStyle = INITIAL_COLOR;
 ctx.lineWidth = 2.5;
 
 let painting = false;
+let filling = false;
 
 function stopPainting() {
     painting = false;
@@ -353,11 +344,50 @@ function onMouseMove(event) {
 }
 
 function onMouseDown(event) {
-    startPainting()
+    startPainting();
 }
 
 function onMouseUp(event) {
     stopPainting();
+}
+
+function handleColorClick(event) {
+    const color = event.target.style.backgroundColor;
+    ctx.strokeStyle = color;
+    ctx.fillStyle = color;
+}
+
+function handleRangeChange(event) {
+    const size = event.target.value;
+    ctx.lineWidth = size;
+}
+
+function handleModeClick() {
+    if (filling === true){
+        filling = false;
+        mode.innerText = "Fill";
+    } else {
+        filling = true;
+        mode.innerText = "Paint";
+    }
+}
+
+function handleCanvasClick(){
+    if (filling) {
+        ctx.fillRect(0, 0, CANVAS_SIZE, CANVAS_SIZE);
+    }
+}
+
+function handleCM(event) {
+    event.preventDefault();
+}
+
+function handleSaveClick() {
+    const image = canvas.toDataURL();
+    const link = document.createElement("a");
+    link.href = image;
+    link.download = "PaintJS";
+    link.click();
 }
 
 if (canvas) {
@@ -365,6 +395,63 @@ if (canvas) {
     canvas.addEventListener("mousedown",  startPainting);
     canvas.addEventListener("mouseup", onMouseUp);
     canvas.addEventListener("mouseleave", stopPainting);
+    canvas.addEventListener("click", handleCanvasClick);
+    canvas.addEventListener("contextmenu", handleCM);
+}
+
+Array.from(colors).forEach(color =>
+    color.addEventListener("click", handleColorClick)
+);
+
+if (range) {
+    range.addEventListener("input", handleRangeChange);
+}
+
+if (mode) {
+    mode.addEventListener("click", handleModeClick);
+}
+
+if (saveBtn) {
+    saveBtn.addEventListener("click", handleSaveClick);
 }
 ```
 
+
+
+##### index.html
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css" />
+    <title>Paintjs</title>
+</head>
+<body>
+    <canvas id="jsCanvas" class="canvas"></canvas>
+    <div class="controls">
+        <div class="controls__range">
+            <input type="range" id="jsRange" min="0.1" max="5" value="2.5" step="0.1" />
+        </div>
+        <div class="controls__btns">
+            <button id="jsMode">Fill</button>
+            <button id="jsSave">Save</button>
+        </div>
+        <div class="controls__colors" id="jsColors">
+            <div class="controls__color jsColor" style="background-color: #2c2c2c;"></div>
+            <div class="controls__color jsColor" style="background-color: white;"></div>
+            <div class="controls__color jsColor" style="background-color: #ff3b30;"></div>
+            <div class="controls__color jsColor" style="background-color: #ff9500;"></div>
+            <div class="controls__color jsColor" style="background-color: #ffcc00;"></div>
+            <div class="controls__color jsColor" style="background-color: #4cd963;"></div>
+            <div class="controls__color jsColor" style="background-color: #5ac8fa;"></div>
+            <div class="controls__color jsColor" style="background-color: #0579ff;"></div>
+            <div class="controls__color jsColor" style="background-color: #5856d6;"></div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
+```
