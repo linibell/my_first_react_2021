@@ -4,7 +4,25 @@
 
 [TOC]
 
-  
+
+
+### # Photo
+
+---
+
+- ##### Home
+
+<img src="README.assets/Movie App - Home.png" alt="Movie App - Home" style="zoom:67%;" />
+
+- ##### About
+
+<img src="README.assets/Movie App - About.png" alt="Movie App - About" style="zoom:67%;" />
+
+- ##### Detail
+
+<img src="README.assets/Movie App - Detail.png" alt="Movie App - Detail" style="zoom:67%;" />
+
+
 
 ### #0 INTRODUCTION
 
